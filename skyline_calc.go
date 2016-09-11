@@ -1,12 +1,12 @@
-package main
+package skylineCalc
 
-import "fmt"
+import "errors"
 
 const (
-	notMatchSizeError = iota
-	dominate          = iota
-	beDominated       = iota
-	nonDominate       = iota
+	skylineError = 0
+	dominate     = iota
+	beDominated
+	nonDominate
 )
 
 type SkylineData struct {
@@ -18,9 +18,9 @@ func (sd *SkylineData) dimSize() int {
 	return len(sd.attributes)
 }
 
-func skylineCalc(data1 SkylineData, data2 SkylineData) int {
+func skylineCalc(data1 SkylineData, data2 SkylineData) (int, error) {
 	if data1.dimSize() != data2.dimSize() {
-		return notMatchSizeError
+		return skylineError, errors.New("Size Not Match: Two attributes' size not match.")
 	}
 	data2Attrs := data2.attributes
 
@@ -38,15 +38,9 @@ func skylineCalc(data1 SkylineData, data2 SkylineData) int {
 	}
 
 	if flag == checkFlag {
-		return beDominated
+		return beDominated, nil
 	} else if flag == 0-checkFlag {
-		return dominate
+		return dominate, nil
 	}
-	return nonDominate
-}
-
-func main() {
-	b := SkylineData{id: "4", attributes: []float32{1, 3, 4, 5}}
-	a := SkylineData{id: "2", attributes: []float32{2, 4, 6, 9}}
-	fmt.Println(skylineCalc(a, b))
+	return nonDominate, nil
 }
