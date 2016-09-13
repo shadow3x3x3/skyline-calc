@@ -9,8 +9,9 @@ const (
 	nonDominate
 )
 
+// SkylineData records multiple variables' data
 type SkylineData struct {
-	id         string
+	label      string
 	attributes []float32
 }
 
