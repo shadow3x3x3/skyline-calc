@@ -1,6 +1,8 @@
 package skylineCalc
 
 import (
+	"math/rand"
+	"strconv"
 	"testing"
 )
 
@@ -44,5 +46,68 @@ func Test_SkylineCalc_Error(t *testing.T) {
 	_, err := skylineCalc(sd1, sd2)
 	if err == nil {
 		t.Errorf("should occur Size Error ")
+	}
+}
+
+func generatorDatas(dim int) (sds []SkylineData) {
+	r := rand.New(rand.NewSource((99)))
+
+	for times := 0; times < 1000000; times++ {
+		var randAttrs []float32
+		for index := 0; index < dim; index++ {
+			randAttrs = append(randAttrs, r.Float32())
+		}
+		sds = append(sds, SkylineData{strconv.Itoa(times), randAttrs})
+		randAttrs = nil
+	}
+	return
+}
+
+func Benchmark_2_Dim(b *testing.B) {
+	sds := generatorDatas(2)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_3_Dim(b *testing.B) {
+	sds := generatorDatas(3)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_4_Dim(b *testing.B) {
+	sds := generatorDatas(4)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_5_Dim(b *testing.B) {
+	sds := generatorDatas(5)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_6_Dim(b *testing.B) {
+	sds := generatorDatas(6)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_7_Dim(b *testing.B) {
+	sds := generatorDatas(7)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
+	}
+}
+
+func Benchmark_8_Dim(b *testing.B) {
+	sds := generatorDatas(8)
+	for i := 1; i < 1000000; i++ {
+		skylineCalc(sds[0], sds[i])
 	}
 }
