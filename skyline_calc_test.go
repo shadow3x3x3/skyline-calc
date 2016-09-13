@@ -15,7 +15,6 @@ func Test_SkylineCalc_Dominate(t *testing.T) {
 	if result != dominate {
 		t.Errorf("{1, 2, 3} should dominate {2, 4, 5}")
 	}
-
 }
 
 func Test_SkylineCalc_NonDominate(t *testing.T) {
@@ -26,7 +25,6 @@ func Test_SkylineCalc_NonDominate(t *testing.T) {
 	if result != nonDominate {
 		t.Errorf("{1, 2, 3} should not dominate or be dominated by {2, 1, 4}")
 	}
-
 }
 
 func Test_SkylineCalc_Be_Dominated(t *testing.T) {
@@ -37,7 +35,6 @@ func Test_SkylineCalc_Be_Dominated(t *testing.T) {
 	if result != beDominated {
 		t.Errorf("{2, 4, 5} should be dominated by {1, 2, 3}")
 	}
-
 }
 
 func Test_SkylineCalc_Error(t *testing.T) {
